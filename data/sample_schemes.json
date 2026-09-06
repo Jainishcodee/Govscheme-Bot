@@ -1,0 +1,91 @@
+[
+  {
+    "scheme_id": "pm-kisan",
+    "name": "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
+    "description": "Central government income support scheme providing direct cash transfers to eligible farmer families to supplement their financial needs for agricultural inputs and household expenses.",
+    "department": "Ministry of Agriculture and Farmers Welfare, Government of India",
+    "category": "agriculture",
+    "eligibility": {
+      "age_min": null,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": ["farmer"],
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Must be a landholding farmer family with cultivable land in their name",
+        "Excludes institutional landholders",
+        "Excludes serving/retired government employees above a certain pay grade",
+        "Excludes income-tax payers in the last assessment year"
+      ]
+    },
+    "benefits": "Rs. 6,000 per year paid in three equal installments of Rs. 2,000 directly to bank accounts.",
+    "documents_required": ["Aadhaar Card", "Land ownership records", "Bank account details"],
+    "application_link": "https://pmkisan.gov.in/",
+    "source_url": "https://pmkisan.gov.in/",
+    "last_verified": "2026-08-19",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "ayushman-bharat-pmjay",
+    "name": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana (PM-JAY)",
+    "description": "National health insurance scheme providing free secondary and tertiary care hospitalization coverage to economically vulnerable families.",
+    "department": "National Health Authority, Government of India",
+    "category": "healthcare",
+    "eligibility": {
+      "age_min": null,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": null,
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Household must be identified as eligible under SECC 2011 deprivation/occupational criteria",
+        "Eligibility is determined by the SECC database, not a simple income threshold — verify via the official beneficiary lookup tool"
+      ]
+    },
+    "benefits": "Health cover of Rs. 5,00,000 per family per year for secondary and tertiary hospitalization.",
+    "documents_required": ["Aadhaar Card", "Ration Card", "Family ID"],
+    "application_link": "https://pmjay.gov.in/",
+    "source_url": "https://pmjay.gov.in/",
+    "last_verified": "2026-08-19",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "vay-vandana-yojana-gujarat",
+    "name": "Vay Vandana Pension Yojana (Gujarat)",
+    "description": "Gujarat state old-age pension scheme providing monthly financial assistance to elderly citizens from economically weaker sections.",
+    "department": "Department of Social Justice and Empowerment, Government of Gujarat",
+    "category": "pension",
+    "eligibility": {
+      "age_min": 60,
+      "age_max": null,
+      "income_min": null,
+      "income_max": 150000,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": ["gujarat"],
+      "occupation": null,
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": null
+    },
+    "benefits": "Monthly pension of Rs. 1,000 credited directly to bank account.",
+    "documents_required": ["Aadhaar Card", "Income Certificate", "Age Proof", "Bank Passbook"],
+    "application_link": "https://digitalgujarat.gov.in/",
+    "source_url": "https://digitalgujarat.gov.in/",
+    "last_verified": "2026-08-19",
+    "verified_by": "manual"
+  }
+]

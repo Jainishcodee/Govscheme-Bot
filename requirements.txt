@@ -1,0 +1,18 @@
+pydantic>=2.5,<2.6
+beautifulsoup4>=4.12
+requests>=2.31
+spacy>=3.7,<3.8
+click>=8.0
+langgraph>=0.0.69,<0.1
+streamlit>=1.35
+# Add later, as you reach those phases:
+# pdfplumber          # Phase 1 - PDF scheme guidelines
+# pytesseract          # Phase 1 - OCR for scanned PDFs
+# spacy                # Phase 4 - NLP extraction
+# chromadb              # Phase 3 - vector store
+# sentence-transformers # Phase 3 - embeddings
+# langgraph             # Phase 5 - orchestration
+# langchain             # Phase 6 - explanation generation
+# fastapi uvicorn       # Phase 7 - API layer
+# anthropic             # Optional Module 6 LLM explanations
+# plotly                # Phase 8 - dashboard
