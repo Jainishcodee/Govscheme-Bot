@@ -25,6 +25,8 @@ class Gender(str, Enum):
 class CasteCategory(str, Enum):
     GENERAL = "general"
     OBC = "obc"
+    EBC = "ebc"
+    DNT = "dnt"
     SC = "sc"
     ST = "st"
     EWS = "ews"
@@ -72,6 +74,23 @@ class EligibilityCriteria(BaseModel):
     # than silently dropped.
     additional_conditions: Optional[List[str]] = None
 
+    @field_validator("gender", mode="before")
+    @classmethod
+    def normalize_gender(cls, v):
+        if v is None:
+            return v
+        value = str(v).lower().strip()
+        if value == "female or sc/st":
+            return "any"
+        return value
+
+    @field_validator("caste_category", mode="before")
+    @classmethod
+    def normalize_caste_categories(cls, v):
+        if v is None:
+            return v
+        return [category.lower() for category in v]
+
     @field_validator("age_max")
     @classmethod
     def age_max_not_below_min(cls, v, info):
@@ -91,11 +110,22 @@ class EligibilityCriteria(BaseModel):
 
 class SchemeCategory(str, Enum):
     AGRICULTURE = "agriculture"
+    BUSINESS_LOAN = "business-loan"
     HEALTHCARE = "healthcare"
     EDUCATION = "education"
+    ENERGY = "energy"
+    ENTREPRENEURSHIP = "entrepreneurship"
+    HIGHER_EDUCATION = "higher-education"
     HOUSING = "housing"
+    INSURANCE = "insurance"
     PENSION = "pension"
     EMPLOYMENT = "employment"
+    RURAL_DEVELOPMENT = "rural-development"
+    RURAL_HOUSING = "rural-housing"
+    SAVINGS = "savings"
+    SKILL_DEVELOPMENT = "skill-development"
+    SOCIAL_SECURITY = "social-security"
+    SOCIAL_WELFARE = "social-welfare"
     WOMEN_CHILD = "women_and_child"
     DISABILITY = "disability"
     OTHER = "other"

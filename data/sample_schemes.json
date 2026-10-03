@@ -1,47 +1,15 @@
 [
   {
-    "scheme_id": "pm-kisan",
-    "name": "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
-    "description": "Central government income support scheme providing direct cash transfers to eligible farmer families to supplement their financial needs for agricultural inputs and household expenses.",
-    "department": "Ministry of Agriculture and Farmers Welfare, Government of India",
-    "category": "agriculture",
+    "scheme_id": "pmay-urban",
+    "name": "Pradhan Mantri Awas Yojana - Urban (PMAY-U)",
+    "description": "Government housing scheme providing assistance to eligible urban households for pucca houses under different housing support components.",
+    "department": "Ministry of Housing and Urban Affairs, Government of India",
+    "category": "housing",
     "eligibility": {
       "age_min": null,
       "age_max": null,
-      "income_min": null,
-      "income_max": null,
-      "gender": "any",
-      "caste_category": null,
-      "marital_status": null,
-      "state": null,
-      "occupation": ["farmer"],
-      "disability_status": null,
-      "bpl_required": null,
-      "additional_conditions": [
-        "Must be a landholding farmer family with cultivable land in their name",
-        "Excludes institutional landholders",
-        "Excludes serving/retired government employees above a certain pay grade",
-        "Excludes income-tax payers in the last assessment year"
-      ]
-    },
-    "benefits": "Rs. 6,000 per year paid in three equal installments of Rs. 2,000 directly to bank accounts.",
-    "documents_required": ["Aadhaar Card", "Land ownership records", "Bank account details"],
-    "application_link": "https://pmkisan.gov.in/",
-    "source_url": "https://pmkisan.gov.in/",
-    "last_verified": "2026-08-19",
-    "verified_by": "manual"
-  },
-  {
-    "scheme_id": "ayushman-bharat-pmjay",
-    "name": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana (PM-JAY)",
-    "description": "National health insurance scheme providing free secondary and tertiary care hospitalization coverage to economically vulnerable families.",
-    "department": "National Health Authority, Government of India",
-    "category": "healthcare",
-    "eligibility": {
-      "age_min": null,
-      "age_max": null,
-      "income_min": null,
-      "income_max": null,
+      "income_min": 0,
+      "income_max": 1800000,
       "gender": "any",
       "caste_category": null,
       "marital_status": null,
@@ -50,42 +18,799 @@
       "disability_status": null,
       "bpl_required": null,
       "additional_conditions": [
-        "Household must be identified as eligible under SECC 2011 deprivation/occupational criteria",
-        "Eligibility is determined by the SECC database, not a simple income threshold — verify via the official beneficiary lookup tool"
+        "Family must belong to an eligible income category such as EWS, LIG, MIG-I or MIG-II",
+        "Applicant or family members must not own a pucca house anywhere in India",
+        "Family must reside in a town or city covered under the scheme",
+        "Family must not have previously availed benefits from another Government of India housing scheme"
       ]
     },
-    "benefits": "Health cover of Rs. 5,00,000 per family per year for secondary and tertiary hospitalization.",
-    "documents_required": ["Aadhaar Card", "Ration Card", "Family ID"],
-    "application_link": "https://pmjay.gov.in/",
-    "source_url": "https://pmjay.gov.in/",
-    "last_verified": "2026-08-19",
-    "verified_by": "manual"
+    "benefits": "Housing assistance under applicable PMAY-U 2.0 components; assistance varies by component and location, including central assistance and home-loan interest subsidy.",
+    "documents_required": [
+      "Aadhaar Number or Aadhaar Enrolment ID",
+      "Income self-certificate or affidavit",
+      "Identity and residential proof",
+      "Bank details",
+      "Proof of nationality",
+      "Applicable EWS/LIG/MIG certificate"
+    ],
+    "application_link": "https://pmay-urban.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/schemes/pmay-u",
+    "last_verified": "2026-10-03",
+    "verified_by": "myscheme"
   },
   {
-    "scheme_id": "vay-vandana-yojana-gujarat",
-    "name": "Vay Vandana Pension Yojana (Gujarat)",
-    "description": "Gujarat state old-age pension scheme providing monthly financial assistance to elderly citizens from economically weaker sections.",
-    "department": "Department of Social Justice and Empowerment, Government of Gujarat",
-    "category": "pension",
+    "scheme_id": "pm-yasasvi-pre-matric",
+    "name": "PM-YASASVI: Pre-Matric Scholarship for OBC, EBC and DNT Students",
+    "description": "Centrally sponsored scholarship scheme providing educational assistance to OBC, EBC and DNT students studying in Classes IX and X in Government Schools.",
+    "department": "Ministry of Social Justice and Empowerment, Government of India",
+    "category": "education",
     "eligibility": {
-      "age_min": 60,
+      "age_min": null,
+      "age_max": null,
+      "income_min": null,
+      "income_max": 250000,
+      "gender": "any",
+      "caste_category": ["OBC", "EBC", "DNT"],
+      "marital_status": null,
+      "state": null,
+      "occupation": ["student"],
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Applicant must be an Indian national",
+        "Student must be studying full-time in Class IX or X",
+        "Student must be studying in a Government School",
+        "Parent or guardian income must not exceed Rs. 2,50,000 per year",
+        "Applicant must belong to OBC, EBC or eligible DNT category",
+        "Student must not hold another educational scholarship for the same purpose"
+      ]
+    },
+    "benefits": "Academic allowance of Rs. 4,000 per annum, paid through DBT.",
+    "documents_required": [
+      "Caste certificate",
+      "Income certificate",
+      "Aadhaar details",
+      "School enrollment details",
+      "Bank account details"
+    ],
+    "application_link": "https://scholarships.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/hi/schemes/pmyasasvipmsobcebcdnts",
+    "last_verified": "2026-10-03",
+    "verified_by": "myscheme"
+  },
+  {
+    "scheme_id": "pmss-states-ut-police",
+    "name": "Prime Minister's Scholarship Scheme for the Wards of States/UTs Police Personnel",
+    "description": "Scholarship scheme supporting higher technical and professional education of dependent wards of State and UT police personnel martyred during terror or Naxal attacks.",
+    "department": "Ministry of Home Affairs, Government of India",
+    "category": "education",
+    "eligibility": {
+      "age_min": null,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": ["student"],
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Applicant must be a dependent ward of eligible State or UT police personnel martyred during terror or Naxal attacks",
+        "Applicant must pursue an eligible first professional degree",
+        "New applicants generally require at least 60% in the minimum entry qualification",
+        "Renewal applicants must pass each subsequent academic year with at least 50%",
+        "Scholarship is limited to eligible professional and technical courses"
+      ]
+    },
+    "benefits": "Rs. 3,000 per month for girls and Rs. 2,500 per month for boys, generally paid annually; scholarship can continue for up to 5 years depending on course duration.",
+    "documents_required": [
+      "Aadhaar Card",
+      "Passport-size photograph",
+      "Certificate confirming death of police personnel in terror/Naxal violence",
+      "Educational marksheet",
+      "Death certificate",
+      "Bank account details",
+      "Disability certificate if applicable"
+    ],
+    "application_link": "https://scholarships.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/schemes/pmsswsutpp",
+    "last_verified": "2026-10-03",
+    "verified_by": "myscheme"
+  },
+  {
+    "scheme_id": "post-matric-scholarship-obc",
+    "name": "Centrally Sponsored Scheme of Post-Matric Scholarship for OBC Students for Studying in India",
+    "description": "Scholarship scheme providing financial assistance to OBC students pursuing post-matriculation or post-secondary education in India.",
+    "department": "Ministry of Social Justice and Empowerment, Government of India",
+    "category": "education",
+    "eligibility": {
+      "age_min": null,
       "age_max": null,
       "income_min": null,
       "income_max": 150000,
       "gender": "any",
-      "caste_category": null,
+      "caste_category": ["OBC"],
       "marital_status": null,
-      "state": ["gujarat"],
+      "state": null,
+      "occupation": ["student"],
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Applicant must be an Indian national",
+        "Applicant must belong to OBC category as notified by the State or UT",
+        "Applicant must pursue a recognized post-matriculation or post-secondary course",
+        "Parent or guardian income must generally not exceed Rs. 1.50 lakh per annum",
+        "Applicant must satisfy applicable State/UT scholarship conditions"
+      ]
+    },
+    "benefits": "Maintenance allowance, compulsory educational fee reimbursement and other approved educational allowances depending on course group and student status.",
+    "documents_required": [
+      "Scholarship application",
+      "Passport-size photograph",
+      "Educational certificates",
+      "Income certificate",
+      "Previous scholarship receipt if applicable",
+      "Caste certificate"
+    ],
+    "application_link": "https://scholarships.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/schemes/csspostmsossi",
+    "last_verified": "2026-10-03",
+    "verified_by": "myscheme"
+  },
+  {
+    "scheme_id": "pm-daksh",
+    "name": "Pradhan Mantri Dakshta Aur Kushalta Sampann Hitgrahi (PM-DAKSH)",
+    "description": "Skill development scheme providing training and employability support to marginalized groups including SCs, OBCs, EWS, DNTs and Safai Mitras.",
+    "department": "Ministry of Social Justice and Empowerment, Government of India",
+    "category": "skill-development",
+    "eligibility": {
+      "age_min": null,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": ["SC", "OBC", "EWS", "DNT"],
+      "marital_status": null,
+      "state": null,
       "occupation": null,
       "disability_status": null,
       "bpl_required": null,
-      "additional_conditions": null
+      "additional_conditions": [
+        "Scheme targets eligible SC, OBC, EWS, DNT and Safai Mitra beneficiaries",
+        "Applicants must satisfy eligibility conditions of the selected training program"
+      ]
     },
-    "benefits": "Monthly pension of Rs. 1,000 credited directly to bank account.",
-    "documents_required": ["Aadhaar Card", "Income Certificate", "Age Proof", "Bank Passbook"],
-    "application_link": "https://digitalgujarat.gov.in/",
-    "source_url": "https://digitalgujarat.gov.in/",
-    "last_verified": "2026-08-19",
+    "benefits": "Free skill training funded through government grants, with applicable training, reskilling, upskilling and entrepreneurial development support.",
+    "documents_required": [
+      "Aadhaar Card",
+      "Category certificate where applicable",
+      "Income or EWS certificate where applicable",
+      "Bank details",
+      "Educational or identity documents as required by training program"
+    ],
+    "application_link": "https://pmdaksh.dosje.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/schemes/pm-daksh",
+    "last_verified": "2026-10-03",
+    "verified_by": "myscheme"
+  },
+  {
+    "scheme_id": "pmkvy-rpl",
+    "name": "Pradhan Mantri Kaushal Vikas Yojana - Recognition of Prior Learning",
+    "description": "Skill certification component that assesses and certifies individuals who already possess occupational skills gained through prior learning or experience.",
+    "department": "Ministry of Skill Development and Entrepreneurship, Government of India",
+    "category": "skill-development",
+    "eligibility": {
+      "age_min": null,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": ["worker", "skill seeker"],
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Applicant should possess prior learning or occupational skills",
+        "Applicants can be assessed and certified under eligible RPL job roles",
+        "The program focuses particularly on individuals working in unregulated sectors"
+      ]
+    },
+    "benefits": "Skill assessment and certification, Rs. 500 reward for certified candidates, three-year accidental insurance of Rs. 2 lakh and applicable RPL kits.",
+    "documents_required": [
+      "Aadhaar Card",
+      "Identity proof",
+      "Bank details",
+      "Prior skill or occupational information"
+    ],
+    "application_link": "https://www.pmkvyofficial.org/",
+    "source_url": "https://www.myscheme.gov.in/schemes/pmkvy-rpl",
+    "last_verified": "2026-10-03",
+    "verified_by": "myscheme"
+  },
+  {
+    "scheme_id": "pm-svanidhi",
+    "name": "PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)",
+    "description": "Micro-credit scheme designed to provide working-capital loans to street vendors to help restart and expand their businesses.",
+    "department": "Ministry of Housing and Urban Affairs, Government of India",
+    "category": "employment",
+    "eligibility": {
+      "age_min": 18,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": ["street vendor"],
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Applicant must be an eligible street vendor",
+        "Applicant must satisfy applicable vending and identification requirements"
+      ]
+    },
+    "benefits": "Working-capital credit support for eligible street vendors with applicable interest subsidy and digital transaction incentives.",
+    "documents_required": [
+      "Aadhaar Card",
+      "Vending certificate or Letter of Recommendation where applicable",
+      "Bank account details",
+      "Identity proof"
+    ],
+    "application_link": "https://pmsvanidhi.mohua.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
     "verified_by": "manual"
+  },
+  {
+    "scheme_id": "pm-vishwakarma",
+    "name": "PM Vishwakarma",
+    "description": "Central sector scheme supporting traditional artisans and craftspeople through skill training, toolkit incentives, credit support, digital transaction incentives and marketing assistance.",
+    "department": "Ministry of Micro, Small and Medium Enterprises, Government of India",
+    "category": "skill-development",
+    "eligibility": {
+      "age_min": 18,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": ["traditional artisan", "craftsperson"],
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Applicant must be engaged in one of the notified traditional artisan or craft occupations",
+        "Applicant must satisfy PM Vishwakarma registration requirements",
+        "Eligibility is subject to scheme guidelines and verification"
+      ]
+    },
+    "benefits": "Skill training, toolkit incentive, concessional collateral-free credit, digital transaction incentives and marketing support.",
+    "documents_required": [
+      "Aadhaar Card",
+      "Mobile number",
+      "Bank account details",
+      "Occupation-related information",
+      "Other documents required during registration"
+    ],
+    "application_link": "https://pmvishwakarma.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "pradhan-mantri-mudra-yojana",
+    "name": "Pradhan Mantri Mudra Yojana (PMMY)",
+    "description": "Credit scheme supporting micro and small non-corporate, non-farm enterprises through loans provided by eligible financial institutions.",
+    "department": "Ministry of Finance, Government of India",
+    "category": "business-loan",
+    "eligibility": {
+      "age_min": 18,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": ["entrepreneur", "small business owner"],
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Applicant should have a viable non-corporate, non-farm micro or small enterprise",
+        "Loan is subject to lender eligibility and credit assessment"
+      ]
+    },
+    "benefits": "Collateral-free credit support for eligible micro and small business activities under applicable MUDRA loan categories.",
+    "documents_required": [
+      "Identity proof",
+      "Address proof",
+      "Business proof",
+      "Bank account details",
+      "Business or loan-related documents required by lender"
+    ],
+    "application_link": "https://www.mudra.org.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "pm-ujjwala-yojana",
+    "name": "Pradhan Mantri Ujjwala Yojana",
+    "description": "Scheme providing LPG connections to eligible women from deprived and economically weaker households to promote clean cooking fuel access.",
+    "department": "Ministry of Petroleum and Natural Gas, Government of India",
+    "category": "energy",
+    "eligibility": {
+      "age_min": 18,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "female",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": null,
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Applicant must be an adult woman",
+        "Applicant must belong to an eligible deprived or economically weaker household category",
+        "Applicant household should not already have an LPG connection"
+      ]
+    },
+    "benefits": "Deposit-free LPG connection support and applicable assistance under the scheme's current provisions.",
+    "documents_required": [
+      "Aadhaar Card",
+      "Address proof",
+      "Bank account details",
+      "Ration card or family composition document",
+      "KYC documents"
+    ],
+    "application_link": "https://www.pmuy.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "sukanya-samriddhi-yojana",
+    "name": "Sukanya Samriddhi Yojana",
+    "description": "Government-backed small savings scheme designed to encourage savings for the education and future financial needs of a girl child.",
+    "department": "Ministry of Finance, Government of India",
+    "category": "savings",
+    "eligibility": {
+      "age_min": null,
+      "age_max": 10,
+      "income_min": null,
+      "income_max": null,
+      "gender": "female",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": ["student"],
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Account is opened in the name of an eligible girl child",
+        "Girl child must generally be below 10 years of age at account opening",
+        "Account is subject to applicable small savings scheme rules"
+      ]
+    },
+    "benefits": "Government-backed savings account with interest and tax benefits subject to applicable rules.",
+    "documents_required": [
+      "Girl child's birth certificate",
+      "Identity proof",
+      "Address proof",
+      "Photograph",
+      "Guardian KYC documents"
+    ],
+    "application_link": "https://www.indiapost.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "atal-pension-yojana",
+    "name": "Atal Pension Yojana",
+    "description": "Government-backed pension scheme designed to provide guaranteed minimum pension benefits to eligible subscribers after reaching the prescribed pension age.",
+    "department": "Department of Financial Services, Ministry of Finance, Government of India",
+    "category": "pension",
+    "eligibility": {
+      "age_min": 18,
+      "age_max": 40,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": ["worker", "self-employed"],
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Applicant must be within the prescribed joining age",
+        "Applicant must have a savings bank account or eligible account",
+        "Subscribers are subject to applicable APY rules"
+      ]
+    },
+    "benefits": "Guaranteed minimum pension options beginning at Rs. 1,000 per month and going up to Rs. 5,000 per month depending on the selected contribution option.",
+    "documents_required": [
+      "Aadhaar Card",
+      "Bank account details",
+      "Mobile number",
+      "KYC documents"
+    ],
+    "application_link": "https://www.pfrda.org.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "pm-jeevan-jyoti-bima-yojana",
+    "name": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+    "description": "Government-backed renewable one-year life insurance scheme providing death benefit to eligible enrolled subscribers.",
+    "department": "Department of Financial Services, Ministry of Finance, Government of India",
+    "category": "insurance",
+    "eligibility": {
+      "age_min": 18,
+      "age_max": 50,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": null,
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Applicant must have an eligible bank or post office account",
+        "Applicant must provide consent for premium auto-debit",
+        "Coverage is subject to applicable scheme rules"
+      ]
+    },
+    "benefits": "Life insurance cover of Rs. 2 lakh on death due to any cause, subject to applicable scheme conditions.",
+    "documents_required": [
+      "Aadhaar Card",
+      "Bank or Post Office account details",
+      "Consent for auto-debit",
+      "KYC documents"
+    ],
+    "application_link": "https://www.jansuraksha.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "pm-suraksha-bima-yojana",
+    "name": "Pradhan Mantri Suraksha Bima Yojana",
+    "description": "Low-cost personal accident insurance scheme providing insurance protection for death or disability resulting from an accident.",
+    "department": "Department of Financial Services, Ministry of Finance, Government of India",
+    "category": "insurance",
+    "eligibility": {
+      "age_min": 18,
+      "age_max": 70,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": null,
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Applicant must have an eligible bank or post office account",
+        "Applicant must provide consent for premium auto-debit",
+        "Coverage is subject to applicable scheme conditions"
+      ]
+    },
+    "benefits": "Accident insurance cover with benefits up to Rs. 2 lakh depending on the nature of death or disability.",
+    "documents_required": [
+      "Aadhaar Card",
+      "Bank or Post Office account details",
+      "Consent for auto-debit",
+      "KYC documents"
+    ],
+    "application_link": "https://www.jansuraksha.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "stand-up-india",
+    "name": "Stand-Up India",
+    "description": "Bank loan scheme supporting entrepreneurship among women and Scheduled Caste or Scheduled Tribe entrepreneurs for setting up greenfield enterprises.",
+    "department": "Department of Financial Services, Ministry of Finance, Government of India",
+    "category": "entrepreneurship",
+    "eligibility": {
+      "age_min": 18,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "female or SC/ST",
+      "caste_category": ["SC", "ST"],
+      "marital_status": null,
+      "state": null,
+      "occupation": ["entrepreneur"],
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Applicant must be a woman or belong to SC/ST category",
+        "Enterprise must be a greenfield enterprise",
+        "Applicant must satisfy applicable bank credit and scheme conditions"
+      ]
+    },
+    "benefits": "Bank loans generally ranging from Rs. 10 lakh to Rs. 1 crore for eligible greenfield enterprises.",
+    "documents_required": [
+      "Identity proof",
+      "Address proof",
+      "Caste certificate where applicable",
+      "Business plan",
+      "Enterprise documents",
+      "Bank-required financial documents"
+    ],
+    "application_link": "https://www.standupmitra.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "national-scholarship-merit",
+    "name": "National Means-cum-Merit Scholarship Scheme",
+    "description": "Scholarship scheme intended to reduce school dropout after Class VIII by providing financial support to meritorious students from economically weaker sections.",
+    "department": "Ministry of Education, Government of India",
+    "category": "education",
+    "eligibility": {
+      "age_min": null,
+      "age_max": null,
+      "income_min": null,
+      "income_max": 350000,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": ["student"],
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Student must satisfy the prescribed academic criteria",
+        "Student must belong to an economically weaker family",
+        "Student must meet the prescribed school and examination requirements"
+      ]
+    },
+    "benefits": "Scholarship assistance of Rs. 12,000 per annum for eligible students, subject to applicable rules.",
+    "documents_required": [
+      "Income certificate",
+      "Academic marksheet",
+      "Aadhaar details",
+      "Bank account details",
+      "School certificate"
+    ],
+    "application_link": "https://scholarships.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "national-fellowship-sc-students",
+    "name": "National Fellowship for Scheduled Caste Students",
+    "description": "Fellowship support for eligible Scheduled Caste students pursuing higher research studies such as M.Phil. and Ph.D.",
+    "department": "Ministry of Social Justice and Empowerment, Government of India",
+    "category": "higher-education",
+    "eligibility": {
+      "age_min": null,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": ["SC"],
+      "marital_status": null,
+      "state": null,
+      "occupation": ["student", "research scholar"],
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Applicant must belong to Scheduled Caste category",
+        "Applicant must satisfy educational and research admission requirements",
+        "Selection is subject to applicable fellowship guidelines"
+      ]
+    },
+    "benefits": "Fellowship and applicable research-related allowances as prescribed under the fellowship guidelines.",
+    "documents_required": [
+      "SC certificate",
+      "Educational certificates",
+      "Admission or research enrollment documents",
+      "Aadhaar details",
+      "Bank account details"
+    ],
+    "application_link": "https://scholarships.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "national-action-plan-drug-demand-reduction",
+    "name": "National Action Plan for Drug Demand Reduction",
+    "description": "Government program supporting prevention, treatment, rehabilitation and awareness activities related to drug dependence and substance abuse.",
+    "department": "Ministry of Social Justice and Empowerment, Government of India",
+    "category": "social-welfare",
+    "eligibility": {
+      "age_min": null,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": null,
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Support is delivered through eligible implementing organizations and institutions",
+        "Beneficiary eligibility depends on the specific intervention or rehabilitation service"
+      ]
+    },
+    "benefits": "Prevention, awareness, counseling, treatment, rehabilitation and other support services through approved interventions.",
+    "documents_required": [
+      "Identity proof",
+      "Medical or treatment records where applicable",
+      "Other documents required by the implementing institution"
+    ],
+    "application_link": "https://socialjustice.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "national-family-benefit-scheme",
+    "name": "National Family Benefit Scheme",
+    "description": "Social assistance scheme providing financial support to eligible households after the death of the primary breadwinner.",
+    "department": "Ministry of Rural Development, Government of India",
+    "category": "social-security",
+    "eligibility": {
+      "age_min": null,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": null,
+      "disability_status": null,
+      "bpl_required": true,
+      "additional_conditions": [
+        "Family must satisfy applicable social assistance and household eligibility criteria",
+        "Primary breadwinner must have died while meeting the prescribed age and scheme conditions"
+      ]
+    },
+    "benefits": "Lump-sum financial assistance to eligible families after the death of the primary breadwinner, according to applicable scheme rules.",
+    "documents_required": [
+      "Death certificate",
+      "Identity proof",
+      "BPL or eligibility proof",
+      "Bank account details",
+      "Proof of relationship with deceased breadwinner"
+    ],
+    "application_link": "https://nsap.nic.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "pradhan-mantri-gramin-awas-yojana",
+    "name": "Pradhan Mantri Awaas Yojana - Gramin (PMAY-G)",
+    "description": "Rural housing assistance scheme providing financial support to eligible rural households for construction of pucca houses with basic amenities.",
+    "department": "Ministry of Rural Development, Government of India",
+    "category": "rural-housing",
+    "eligibility": {
+      "age_min": null,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": ["SC", "ST"],
+      "marital_status": null,
+      "state": null,
+      "occupation": null,
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Applicant must be an eligible rural household",
+        "Household must satisfy deprivation and housing criteria under PMAY-G",
+        "Priority is given to eligible vulnerable and deprived households"
+      ]
+    },
+    "benefits": "Financial assistance for construction of a pucca rural house along with convergence support for basic amenities as applicable.",
+    "documents_required": [
+      "Aadhaar Card",
+      "Bank account details",
+      "Job card or rural household records where applicable",
+      "Land or housing-related documents where required"
+    ],
+    "application_link": "https://pmayg.nic.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "national-social-assistance-programme",
+    "name": "National Social Assistance Programme (NSAP)",
+    "description": "Social assistance program providing support to vulnerable households through pension and family benefit components.",
+    "department": "Ministry of Rural Development, Government of India",
+    "category": "social-security",
+    "eligibility": {
+      "age_min": 18,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": null,
+      "marital_status": null,
+      "state": null,
+      "occupation": null,
+      "disability_status": null,
+      "bpl_required": true,
+      "additional_conditions": [
+        "Eligibility varies by NSAP component",
+        "Applicant must satisfy applicable age, household and vulnerability conditions",
+        "State or UT implementation procedures may apply"
+      ]
+    },
+    "benefits": "Social assistance through applicable pension and family-benefit components under NSAP.",
+    "documents_required": [
+      "Aadhaar or identity proof",
+      "Age proof",
+      "BPL or eligibility documentation",
+      "Bank account details",
+      "Other component-specific documents"
+    ],
+    "application_link": "https://nsap.nic.in/",
+    "source_url": "https://www.myscheme.gov.in/",
+    "last_verified": "2026-10-03",
+    "verified_by": "manual"
+  },
+  {
+    "scheme_id": "shaheed-gram-vikas-yojana",
+    "name": "Shaheed Gram Vikas Yojana",
+    "description": "Development scheme focused on selected villages associated with freedom fighters, providing housing and community infrastructure support.",
+    "department": "Government of Jharkhand",
+    "category": "rural-development",
+    "eligibility": {
+      "age_min": null,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "any",
+      "caste_category": ["SC", "ST"],
+      "marital_status": null,
+      "state": ["jharkhand"],
+      "occupation": null,
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": [
+        "Family should reside in a selected Shaheed village",
+        "Eligible Shaheed family should satisfy the prescribed housing conditions",
+        "For housing assistance, family should be living in a kutcha house and must meet applicable exclusion conditions"
+      ]
+    },
+    "benefits": "Housing assistance of Rs. 2,63,000 per eligible family in specified cases, along with village infrastructure and community development support.",
+    "documents_required": [
+      "Identity proof",
+      "Residence proof",
+      "SC/ST certificate where applicable",
+      "Housing status documentation",
+      "Family or Shaheed-related records where applicable"
+    ],
+    "application_link": "https://jharkhand.gov.in/",
+    "source_url": "https://www.myscheme.gov.in/schemes/sgvy",
+    "last_verified": "2026-10-03",
+    "verified_by": "myscheme"
   }
 ]
