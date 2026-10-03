@@ -35,6 +35,7 @@ from retrieval.retriever import SchemeRetriever
 from rule_engine.engine import EligibilityStatus
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), "data", "sample_schemes.json")
+SCRAPED_DATA_PATH = os.path.join(os.path.dirname(__file__), "data", "myscheme_schemes.json")
 
 STATUS_DISPLAY = {
     EligibilityStatus.ELIGIBLE: ("✅", "Eligible"),
@@ -46,9 +47,17 @@ STATUS_DISPLAY = {
 
 @st.cache_resource
 def load_schemes() -> list[Scheme]:
-    with open(DATA_PATH) as f:
-        raw = json.load(f)
-    return [Scheme(**item) for item in raw]
+    paths = [DATA_PATH]
+    if os.path.exists(SCRAPED_DATA_PATH):
+        paths.append(SCRAPED_DATA_PATH)
+
+    schemes_by_source_url = {}
+    for path in paths:
+        with open(path, encoding="utf-8") as f:
+            for item in json.load(f):
+                scheme = Scheme(**item)
+                schemes_by_source_url[str(scheme.source_url)] = scheme
+    return list(schemes_by_source_url.values())
 
 
 @st.cache_resource

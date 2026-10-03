@@ -477,6 +477,108 @@ in `test_streamlit_app.py` is a regression test for exactly this bug.
 
 # RAG Retrieval
 
+# myScheme.gov.in Playwright Scraper
+
+## Added files and integration
+
+```
+scrapers/
+├── myscheme_playwright.py       # rendered discovery, pagination, parsing, retries
+└── __init__.py
+tests/
+└── test_myscheme_playwright.py  # offline parser + 1/5/20 batch tests
+```
+
+The scraper reuses `schema.Scheme` and `schema.EligibilityCriteria`. It does
+not create a second data format or vector database. The Streamlit loader also
+reads `data/myscheme_schemes.json` when that file exists, deduplicating by the
+official `source_url` before passing the combined list to the existing
+`SchemeRetriever` and ChromaDB pipeline.
+
+Fields map as follows:
+
+- About/Overview -> `description`
+- Benefits -> `benefits`
+- Eligibility -> structured `EligibilityCriteria` where safely recognized
+- Documents Required -> `documents_required`
+- Application link -> `application_link`
+- Objectives, application process, beneficiary text, scope, and unstructured eligibility -> `eligibility.additional_conditions`
+- Missing values -> `None` or `[]`
+
+The parser selects `main`/`article` scheme content, removes `header`, `nav`,
+`footer`, `aside`, breadcrumbs, forms, menus, and search controls, then reads
+labeled sections. It never uses whole-page text as the description.
+
+## Run
+
+Install the Python package and browser once:
+
+```bash
+pip install -r requirements.txt
+playwright install chromium
+```
+
+Run a small approved test first:
+
+```bash
+python -m scrapers.myscheme_playwright --limit 1
+python -m scrapers.myscheme_playwright --limit 5
+python -m scrapers.myscheme_playwright --limit 20
+```
+
+Run the full discovered set only after reviewing the result count:
+
+```bash
+python -m scrapers.myscheme_playwright
+```
+
+The default discovery surface is the public dashboard. A specific public
+listing/search page can be supplied with `--listing-url`. Results are written
+to `data/myscheme_schemes.json`; failed URLs and error messages are written to
+`data/myscheme_failed.json` so they can be retried independently.
+
+The scraper uses normal Playwright navigation and conservative delays. It does
+not bypass CAPTCHA, authentication, anti-bot checks, or rate limits. A blocked
+page is recorded as a failure and the batch continues.
+
+Example output item, using the existing schema:
+
+```json
+{
+   "scheme_id": "women-entrepreneurship-support",
+   "name": "Women Entrepreneurship Support",
+   "description": "A grant for women starting eligible businesses.",
+   "department": "Ministry of Skill Development",
+   "category": "women_and_child",
+   "eligibility": {
+      "age_min": 18,
+      "age_max": null,
+      "income_min": null,
+      "income_max": null,
+      "gender": "female",
+      "caste_category": null,
+      "marital_status": null,
+      "state": ["gujarat"],
+      "occupation": null,
+      "disability_status": null,
+      "bpl_required": null,
+      "additional_conditions": ["Application process: Apply through the official portal."]
+   },
+   "benefits": "Grant support up to Rs. 2 lakh.",
+   "documents_required": ["Aadhaar card"],
+   "application_link": "https://official.example/apply",
+   "source_url": "https://www.myscheme.gov.in/schemes/women-entrepreneurship-support",
+   "last_verified": "2026-10-03",
+   "verified_by": "llm_assisted"
+}
+```
+
+Validate the offline parser and batch controls with:
+
+```bash
+python tests/test_myscheme_playwright.py
+```
+
 ## What's here
 
 ```
