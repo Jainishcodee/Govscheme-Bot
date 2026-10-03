@@ -24,6 +24,7 @@ class ConversationState(TypedDict):
 
     # --- accumulated across turns ---
     profile: UserProfile
+    conversation_text: str
     turn_count: int
     max_turns: int
 
@@ -44,6 +45,7 @@ def new_conversation_state(all_schemes: List[Scheme], max_turns: int = 5) -> Con
     return ConversationState(
         user_message="",
         profile=UserProfile(),
+        conversation_text="",
         turn_count=0,
         max_turns=max_turns,
         all_schemes=all_schemes,

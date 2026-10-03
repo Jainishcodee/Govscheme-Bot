@@ -23,22 +23,27 @@ from orchestration.nodes import (
     evaluate_node,
     extract_node,
     finalize_node,
-    retrieve_node,
+    make_explain_node,
+    make_retrieve_node,
     route_after_evaluate,
 )
 from orchestration.state import ConversationState
-from explanation.generator import ExplanationGenerator, TemplateExplanationGenerator
+from explanation.generator import ExplanationGenerator
+from retrieval.retriever import SchemeRetriever
 
 
-def build_graph(explanation_generator: ExplanationGenerator = None):
-    generator = explanation_generator or TemplateExplanationGenerator()
+def build_graph(
+    explanation_generator: ExplanationGenerator | None = None,
+    retriever: SchemeRetriever | None = None,
+):
     graph = StateGraph(ConversationState)
 
     graph.add_node("extract", extract_node)
-    graph.add_node("retrieve", retrieve_node)
+    graph.add_node("retrieve", make_retrieve_node(retriever))
     graph.add_node("evaluate", evaluate_node)
     graph.add_node("clarify", clarify_node)
-    graph.add_node("finalize", lambda state: finalize_node(state, generator))
+    graph.add_node("finalize", finalize_node)
+    graph.add_node("explain", make_explain_node(explanation_generator))
 
     graph.set_entry_point("extract")
     graph.add_edge("extract", "retrieve")
@@ -49,7 +54,8 @@ def build_graph(explanation_generator: ExplanationGenerator = None):
         {"clarify": "clarify", "finalize": "finalize"},
     )
     graph.add_edge("clarify", END)
-    graph.add_edge("finalize", END)
+    graph.add_edge("finalize", "explain")
+    graph.add_edge("explain", END)
 
     return graph.compile()
 

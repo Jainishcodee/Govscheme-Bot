@@ -1,10 +1,13 @@
-pydantic>=2.5,<2.6
+pydantic>=2.5
 beautifulsoup4>=4.12
 requests>=2.31
 spacy>=3.7,<3.8
 click>=8.0
 langgraph>=0.0.69,<0.1
 streamlit>=1.35
+chromadb>=0.5
+scikit-learn>=1.4
+scipy>=1.11
 # Add later, as you reach those phases:
 # pdfplumber          # Phase 1 - PDF scheme guidelines
 # pytesseract          # Phase 1 - OCR for scanned PDFs

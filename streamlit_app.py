@@ -5,17 +5,19 @@ chat app:
   Module 1  schema.py, scrapers/       -> data/sample_schemes.json is loaded as the scheme corpus
   Module 3  rule_engine/                -> deterministic eligibility decisions
   Module 4  nlp_extraction/              -> free text -> UserProfile
+  RAG       retrieval/                    -> ChromaDB + TF-IDF semantic search over the scheme corpus
   Module 5  orchestration/                -> LangGraph turn-by-turn state machine
   Module 6  explanation/                   -> decision -> natural language
 
 Run with:
     streamlit run streamlit_app.py
 
-Works with ZERO configuration (uses TemplateExplanationGenerator).
-If you set an ANTHROPIC_API_KEY environment variable before running,
-it automatically upgrades to LLM-generated explanations, falling back
-to templates silently if any API call fails — see the sidebar for
-which mode is active.
+Works with ZERO configuration (uses TemplateExplanationGenerator and
+an offline TF-IDF retriever — see retrieval/embeddings.py for why no
+model download is required). If you set an ANTHROPIC_API_KEY
+environment variable before running, it automatically upgrades to
+LLM-generated explanations, falling back to templates silently if any
+API call fails — see the sidebar for which mode is active.
 """
 
 from __future__ import annotations
@@ -29,6 +31,7 @@ from schema import Scheme
 from explanation.generator import LLMExplanationGenerator, TemplateExplanationGenerator, anthropic_llm_call
 from orchestration.graph import build_graph, submit_message
 from orchestration.state import new_conversation_state
+from retrieval.retriever import SchemeRetriever
 from rule_engine.engine import EligibilityStatus
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), "data", "sample_schemes.json")
@@ -49,6 +52,19 @@ def load_schemes() -> list[Scheme]:
 
 
 @st.cache_resource
+def get_retriever() -> SchemeRetriever:
+    """
+    Builds the ChromaDB-backed index once per server process. With
+    only 3 schemes in this demo corpus, top_k=5 never actually
+    excludes anything — retrieval only starts genuinely narrowing
+    candidates once Module 1's dataset grows past a handful of
+    schemes. See retrieval/README notes and tests/test_retrieval.py
+    for a larger synthetic corpus that demonstrates real filtering.
+    """
+    return SchemeRetriever.from_schemes(load_schemes(), default_top_k=5)
+
+
+@st.cache_resource
 def get_graph_and_mode():
     """
     Builds the graph once per server process. Upgrades to LLM
@@ -57,13 +73,14 @@ def get_graph_and_mode():
     otherwise (or silently per-call if an API request fails — see
     LLMExplanationGenerator's own fallback in explanation/generator.py).
     """
+    retriever = get_retriever()
     if os.environ.get("ANTHROPIC_API_KEY"):
         try:
             generator = LLMExplanationGenerator(anthropic_llm_call())
-            return build_graph(generator), "llm"
+            return build_graph(generator, retriever=retriever), "llm"
         except Exception:
             pass
-    return build_graph(TemplateExplanationGenerator()), "template"
+    return build_graph(TemplateExplanationGenerator(), retriever=retriever), "template"
 
 
 def init_session_state():
@@ -123,8 +140,24 @@ def main():
 
         st.divider()
         st.subheader("Schemes in this demo")
-        for s in load_schemes():
-            st.caption(f"• {s.name}")
+        all_schemes = load_schemes()
+        candidate_ids = {
+            s.scheme_id for s in st.session_state.conversation_state["candidate_schemes"]
+        }
+        turn_count = st.session_state.conversation_state["turn_count"]
+        for s in all_schemes:
+            if turn_count > 0 and s.scheme_id not in candidate_ids:
+                st.caption(f"·  ~~{s.name}~~  _(not retrieved this turn)_")
+            else:
+                st.caption(f"•  {s.name}")
+        if turn_count > 0:
+            st.caption(
+                f"RAG retrieved {len(candidate_ids)} of {len(all_schemes)} schemes as "
+                f"candidates this turn (TF-IDF + ChromaDB, ranked against everything "
+                f"you've said so far). With only {len(all_schemes)} schemes in this demo "
+                f"corpus, retrieval rarely excludes anything — see tests/test_retrieval.py "
+                f"for a larger corpus where it actually filters."
+            )
 
     for role, content in st.session_state.chat_history:
         with st.chat_message(role):
