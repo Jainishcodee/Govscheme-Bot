@@ -40,6 +40,10 @@ class ConversationState(TypedDict):
     clarification_field: Optional[str]  # which condition field the question targets
     done: bool                          # True once ready for Module 6 (explanation) / final display
 
+    # --- typo-correction transparency (this turn only) ---
+    corrections: List[List[str]]        # [[original, corrected], ...] for this turn
+    corrected_text: str                 # user_message after auto-correction
+
 
 def new_conversation_state(all_schemes: List[Scheme], max_turns: int = 5) -> ConversationState:
     return ConversationState(
@@ -56,4 +60,6 @@ def new_conversation_state(all_schemes: List[Scheme], max_turns: int = 5) -> Con
         clarification_question=None,
         clarification_field=None,
         done=False,
+        corrections=[],
+        corrected_text="",
     )

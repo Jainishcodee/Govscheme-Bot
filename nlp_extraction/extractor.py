@@ -140,17 +140,40 @@ class ExtractionResult:
     # field name -> raw text span that produced it, for debugging /
     # for showing the user "here's what I understood" transparency.
     matched_spans: Dict[str, str] = field(default_factory=dict)
+    # Typo correction transparency: the text after auto-correction,
+    # plus each distinct (original, corrected) pair applied. Empty
+    # when nothing needed fixing. The UI surfaces this as
+    # "I read 'gujrat' as 'gujarat'" so the user can spot a bad fix.
+    corrected_text: str = ""
+    corrections: List[Tuple[str, str]] = field(default_factory=list)
 
 
-def extract(text: str) -> ExtractionResult:
-    doc = _NLP(text)
+def extract(text: str, correct_typos: bool = True) -> ExtractionResult:
+    # Auto-correct vocabulary typos ("tacher" -> "teacher", "gujrat"
+    # -> "gujarat") BEFORE any matching runs, so the PhraseMatcher
+    # and the regexes both see clean text. Correction is conservative
+    # by design (see spelling.py) — when in doubt it leaves the token
+    # alone rather than guessing.
+    corrections: List[Tuple[str, str]] = []
+    working_text = text
+    if correct_typos:
+        try:
+            from spelling import domain_corrector
+
+            working_text, corrections = domain_corrector().correct_text(text)
+        except Exception:
+            # Never let a spelling helper break extraction — fall back
+            # to the raw text.
+            working_text, corrections = text, []
+
+    doc = _NLP(working_text)
     matched: Dict[str, str] = {}
 
-    age, raw = _extract_age(text)
+    age, raw = _extract_age(working_text)
     if raw:
         matched["age"] = raw
 
-    income, raw = _extract_income(text)
+    income, raw = _extract_income(working_text)
     if raw:
         matched["annual_income"] = raw
 
@@ -195,7 +218,12 @@ def extract(text: str) -> ExtractionResult:
         has_disability=has_disability,
         has_bpl_card=has_bpl_card,
     )
-    return ExtractionResult(profile=profile, matched_spans=matched)
+    return ExtractionResult(
+        profile=profile,
+        matched_spans=matched,
+        corrected_text=working_text,
+        corrections=corrections,
+    )
 
 
 def merge_profile(existing: UserProfile, new: UserProfile) -> UserProfile:

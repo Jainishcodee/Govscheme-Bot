@@ -178,6 +178,15 @@ def main():
         state = submit_message(st.session_state.conversation_state, user_input, graph=graph)
         st.session_state.conversation_state = state
 
+        if state["corrections"]:
+            corrections = ", ".join(
+                f"`{original}` as `{corrected}`"
+                for original, corrected in state["corrections"]
+            )
+            st.session_state.chat_history.append(
+                ("assistant", f"I read {corrections}.")
+            )
+
         if state["awaiting_clarification"]:
             st.session_state.chat_history.append(("assistant", state["clarification_question"]))
         else:

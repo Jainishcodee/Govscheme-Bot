@@ -29,11 +29,17 @@ from retrieval.retriever import SchemeRetriever
 def extract_node(state: ConversationState) -> dict:
     extraction = extract(state["user_message"])
     merged_profile = merge_profile(state["profile"], extraction.profile)
-    conversation_text = (state["conversation_text"] + " " + state["user_message"]).strip()
+    # Accumulate the CORRECTED text so retrieval (TF-IDF over the
+    # whole conversation so far) sees "teacher in gujarat" even when
+    # the user typed "tacher in gujrat".
+    corrected = extraction.corrected_text or state["user_message"]
+    conversation_text = (state["conversation_text"] + " " + corrected).strip()
     return {
         "profile": merged_profile,
         "conversation_text": conversation_text,
         "turn_count": state["turn_count"] + 1,
+        "corrections": [list(pair) for pair in extraction.corrections],
+        "corrected_text": corrected,
     }
 
 
